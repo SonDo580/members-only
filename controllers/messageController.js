@@ -3,13 +3,13 @@ exports.message_list = (req, res) => {
 };
 
 exports.message_create_get = (req, res) => {
-  res.send("NOT IMPLEMENTED: Create Messate GET");
+  res.send("NOT IMPLEMENTED: Create Message GET");
 };
 
 exports.message_create_post = (req, res) => {
-  res.send("NOT IMPLEMENTED: Create Messate POST");
+  res.send("NOT IMPLEMENTED: Create Message POST");
 };
 
 exports.message_delete = (req, res) => {
-  res.send("NOT IMPLEMENTED: Delete Messate");
+  res.send("NOT IMPLEMENTED: Delete Message");
 };
