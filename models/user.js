@@ -9,3 +9,7 @@ const UserSchema = new Schema({
   isMember: { type: Boolean, default: false },
   isAdmin: { type: Boolean, default: false },
 });
+
+UserSchema.virtual("name").get(function () {
+  return `${this.firstName} ${this.lastName}`;
+});
