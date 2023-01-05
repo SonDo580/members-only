@@ -1,5 +1,5 @@
 exports.sign_up_get = (req, res) => {
-  res.send("NOT IMPLEMENTED: Sign Up GET");
+  res.render("signup_form", { title: "Sign Up" });
 };
 
 exports.sign_up_post = (req, res) => {
