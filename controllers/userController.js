@@ -36,6 +36,21 @@ exports.sign_up_post = [
     .isLength({ min: 1 })
     .escape()
     .withMessage("Password confirm must be specified"),
+
+  // Process request
+  (req, res, next) => {
+    const errors = validationResult(req);
+
+    // Render the form again if there are errors
+    if (!errors.isEmpty()) {
+      res.render("signup_form", {
+        title: "Sign Up",
+        user: req.body,
+        errors: errors.array(),
+      });
+      return;
+    }
+  },
 ];
 
 exports.log_in_get = (req, res) => {
