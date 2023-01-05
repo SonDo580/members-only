@@ -25,16 +25,7 @@
         </div>
     </form>
 
-    <script>
-        const username = document.querySelector("input[name=username]");
-        username.addEventListener('input', () => {
-            if (username.validity.patternMismatch) {
-                username.setCustomValidity("Only letters and numbers are allowed (no spaces)");
-            } else {
-                username.setCustomValidity("");
-            }
-        })
-    </script>
+    <%- include('validators/login'); %>
 </body>
 
 </html>
