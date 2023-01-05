@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('components/head'); %>
+</head>
+
+<body>
+    <form action="" method="POST" class="col-4 mx-auto mt-5">
+        <h1 class="text-center"><%= title %></h1>
+        <hr>
+        <div class="row mb-3">
+            <label>Username*</label>
+            <input type="text" class="form-control" required maxlength="100" name="username">
+        </div>
+        <div class="row mb-3">
+            <label>Password*</label>
+            <input type="password" class="form-control" required name="password">
+        </div>
+        <div class="row">
+            <button class="btn btn-primary">Log In</button>
+        </div>
+        <div class="row text-center">
+            <p>Don't have an account? <a href="/user/signup">Sign Up</a></p>
+        </div>
+    </form>
+</body>
+
+</html>
