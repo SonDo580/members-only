@@ -22,7 +22,8 @@
         <div class="row mb-3">
             <div class="col">
                 <label for="username">Username*</label>
-                <input type="text" class="form-control" required maxlength="100" name="username" id="username">
+                <input type="text" class="form-control" required maxlength="100" pattern="^[A-Za-z0-9]+$"
+                    name="username" id="username">
             </div>
             <div class="col">
                 <label>Are you an admin? (Enter passphrase)</label>
