@@ -63,6 +63,10 @@ exports.sign_up_post = [
       password: req.body.password, // save as plain text for now
     });
 
+    if (req.body.adminPass === process.env.ADMIN_PASS) {
+      user.isAdmin = true;
+    }
+
     user.save((err) => {
       if (err) {
         return next(err);
