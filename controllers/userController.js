@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const { body, validationResult } = require("express-validator");
 
 exports.sign_up_get = (req, res) => {
   res.render("signup_form", { title: "Sign Up" });
