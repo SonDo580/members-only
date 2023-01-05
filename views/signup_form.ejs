@@ -3,7 +3,6 @@
 
 <head>
     <%- include('components/head'); %>
-    <script src="./validators/signup.js" defer></script>
 </head>
 
 <body>
@@ -47,6 +46,8 @@
             <p>Already have an account? <a href="/user/login">Log In</a></p>
         </div>
     </form>
+
+    <%- include('validators/signup'); %>
 </body>
 
 </html>
