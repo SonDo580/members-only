@@ -21,8 +21,23 @@
     }
   })
 
-  // Validate firstName and lastName
+  // Validate firstName
   const firstName = document.getElementById("firstName");
-  const lastName = document.getElementById("lastName");
+  firstName.addEventListener('input', () => {
+    if (firstName.validity.patternMismatch) {
+      firstName.setCustomValidity("Only letters are allowed (no spaces)");
+    } else {
+      firstName.setCustomValidity("");
+    }
+  })
 
+  // Validate lastName
+  const lastName = document.getElementById("lastName");
+  lastName.addEventListener('input', () => {
+    if (lastName.validity.patternMismatch) {
+      lastName.setCustomValidity("Only letters are allowed (no spaces)");
+    } else {
+      lastName.setCustomValidity("");
+    }
+  })
 </script>
