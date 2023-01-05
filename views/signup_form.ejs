@@ -13,34 +13,48 @@
             <div class="col">
                 <label for="firstName">First Name*</label>
                 <input type="text" class="form-control" required maxlength="100" pattern="^[A-Za-z]+$" name="firstName"
-                    id="firstName">
+                    id="firstName" value=<%= user === null ? '' : user.firstName %>>
             </div>
             <div class="col">
                 <label for="lastName">Last Name*</label>
                 <input type="text" class="form-control" required maxlength="100" pattern="^[A-Za-z]+$" name="lastName"
-                    id="lastName">
+                    id="lastName" value=<%= user === null ? '' : user.lastName %>>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
                 <label for="username">Username*</label>
                 <input type="text" class="form-control" required maxlength="100" pattern="^[A-Za-z0-9]+$"
-                    name="username" id="username">
+                    name="username" id="username" value=<%= user === null ? '' : user.username %>>
             </div>
             <div class="col">
                 <label>Are you an admin? (Enter passphrase)</label>
-                <input type="text" class="form-control" name="adminPass">
+                <input type="text" class="form-control" name="adminPass"
+                    value=<%= user === null ? '' : user.adminPass %>>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col">
                 <label for="password">Password*</label>
-                <input type="password" class="form-control" required name="password" id="password">
+                <input type="password" class="form-control" required name="password" id="password"
+                    value=<%= user === null ? '' : user.password %>>
             </div>
             <div class="col">
                 <label for="confirmPassword">Confirm password*</label>
-                <input type="password" class="form-control" required name="confirmPassword" id="confirmPassword">
+                <input type="password" class="form-control" required name="confirmPassword" id="confirmPassword"
+                    value=<%= user === null ? '' : user.confirmPassword %>>
             </div>
+        </div>
+        <div class="errors">
+            <% if (errors !== null) {%>
+            <ul>
+                <% for (const error of errors) { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+                <% } %>
+            </ul>
+            <% } %>
         </div>
         <div class="row">
             <button class="btn btn-primary">Sign Up</button>
