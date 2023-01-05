@@ -11,7 +11,7 @@
         <hr>
         <div class="row mb-3">
             <label>Username*</label>
-            <input type="text" class="form-control" required maxlength="100" name="username">
+            <input type="text" class="form-control" required maxlength="100" pattern="^[A-Za-z0-9]+$" name="username">
         </div>
         <div class="row mb-3">
             <label>Password*</label>
@@ -24,6 +24,17 @@
             <p>Don't have an account? <a href="/user/signup">Sign Up</a></p>
         </div>
     </form>
+
+    <script>
+        const username = document.querySelector("input[name=username]");
+        username.addEventListener('input', () => {
+            if (username.validity.patternMismatch) {
+                username.setCustomValidity("Only letters and numbers are allowed (no spaces)");
+            } else {
+                username.setCustomValidity("");
+            }
+        })
+    </script>
 </body>
 
 </html>
