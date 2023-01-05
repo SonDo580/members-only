@@ -7,6 +7,42 @@
 
 <body>
     <%- include('components/nav') %>
+
+    <form action="" method="POST" class="col-8 mx-auto mt-5">
+        <div class="row mb-3">
+            <div class="col">
+                <label>First Name*</label>
+                <input type="text" class="form-control" required name="firstName">
+            </div>
+            <div class="col">
+                <label>Last Name*</label>
+                <input type="text" class="form-control" required name="lastName">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label>Username*</label>
+                <input type="text" class="form-control" required name="username">
+            </div>
+            <div class="col">
+                <label>Are you an admin? (Enter passphrase)</label>
+                <input type="password" class="form-control" name="adminPass">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label>Password*</label>
+                <input type="password" class="form-control" required name="password">
+            </div>
+            <div class="col">
+                <label>Confirm password*</label>
+                <input type="password" class="form-control">
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn btn-primary">Sign Up</button>
+        </div>
+    </form>
 </body>
 
 </html>
