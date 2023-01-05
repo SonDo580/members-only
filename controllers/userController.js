@@ -37,7 +37,9 @@ exports.sign_up_post = [
     .withMessage("Password must be specified"),
   body("confirmPassword")
     .isLength({ min: 1 })
-    .withMessage("Password confirm must be specified"),
+    .withMessage("Password confirmation must be specified")
+    .custom((value, { req }) => value === req.body.password)
+    .withMessage("Password confirmation does not match password"),
 
   // Process request
   (req, res, next) => {
