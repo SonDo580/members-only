@@ -1,4 +1,5 @@
 <script>
+  // Confirm password
   const password = document.getElementById("password");
   const confirmPassword = document.getElementById("confirmPassword");
 
@@ -9,4 +10,14 @@
       confirmPassword.setCustomValidity("");
     }
   });
+
+  // Validate username
+  const username = document.getElementById("username");
+  username.addEventListener('input', () => {
+    if (username.validity.patternMismatch) {
+      username.setCustomValidity("Only letters and numbers are allowed (no spaces)");
+    } else {
+      username.setCustomValidity("");
+    }
+  })
 </script>
