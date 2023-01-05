@@ -30,19 +30,19 @@
             <div class="col">
                 <label>Are you an admin? (Enter passphrase)</label>
                 <input type="text" class="form-control" name="adminPass"
-                    value=<%= user === null ? '' : user.adminPass %>>
+                    value="<%= user === null ? '' : user.adminPass %>">
             </div>
         </div>
-        <div class="row mb-3">
+        <div class=" row mb-3">
             <div class="col">
                 <label for="password">Password*</label>
                 <input type="password" class="form-control" required name="password" id="password"
-                    value=<%= user === null ? '' : user.password %>>
+                    value="<%= user === null ? '' : user.password %>">
             </div>
             <div class="col">
                 <label for="confirmPassword">Confirm password*</label>
                 <input type="password" class="form-control" required name="confirmPassword" id="confirmPassword"
-                    value=<%= user === null ? '' : user.confirmPassword %>>
+                    value="<%= user === null ? '' : user.confirmPassword %>">
             </div>
         </div>
         <div class="errors">
