@@ -7,7 +7,7 @@ exports.sign_up_post = (req, res) => {
 };
 
 exports.log_in_get = (req, res) => {
-  res.send("NOT IMPLEMENTED: Log In GET");
+  res.render("login_form", { title: "Log In" });
 };
 
 exports.log_in_post = (req, res) => {
