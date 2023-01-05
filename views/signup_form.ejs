@@ -12,11 +12,13 @@
         <div class="row mb-3">
             <div class="col">
                 <label for="firstName">First Name*</label>
-                <input type="text" class="form-control" required maxlength="100" name="firstName" id="firstName">
+                <input type="text" class="form-control" required maxlength="100" pattern="^[A-Za-z\s]+$"
+                    name="firstName" id="firstName">
             </div>
             <div class="col">
                 <label for="lastName">Last Name*</label>
-                <input type="text" class="form-control" required maxlength="100" name="lastName" id="lastName">
+                <input type="text" class="form-control" required maxlength="100" pattern="^[A-Za-z\s]+$" name="lastName"
+                    id="lastName">
             </div>
         </div>
         <div class="row mb-3">
