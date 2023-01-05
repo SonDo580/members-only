@@ -34,11 +34,9 @@ exports.sign_up_post = [
     .withMessage("Username must contain only letters and digits (no spaces)"),
   body("password")
     .isLength({ min: 1 })
-    .escape()
     .withMessage("Password must be specified"),
   body("confirmPassword")
     .isLength({ min: 1 })
-    .escape()
     .withMessage("Password confirm must be specified"),
 
   // Process request
