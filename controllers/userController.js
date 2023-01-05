@@ -54,6 +54,22 @@ exports.sign_up_post = [
       });
       return;
     }
+
+    // Data is valid
+    const user = new User({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      username: req.body.username,
+      password: req.body.password, // save as plain text for now
+    });
+
+    user.save((err) => {
+      if (err) {
+        return next(err);
+      }
+
+      res.redirect("/user/login");
+    });
   },
 ];
 
