@@ -92,8 +92,9 @@ exports.check_unique = (req, res) => {
 
     if (users.length === 0) {
       res.send({ userExisted: false });
+    } else {
+      res.send({ userExisted: true });
     }
-    res.send({ userExisted: true });
   });
 };
 
