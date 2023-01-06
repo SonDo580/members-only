@@ -33,8 +33,8 @@ exports.sign_up_post = [
     .matches("^[A-Za-z0-9]+$")
     .withMessage("Username must contain only letters and digits (no spaces)")
     .custom((value) => {
-      return User.find({ username: value }).then((user) => {
-        if (user) {
+      return User.find({ username: value }).then((users) => {
+        if (users.length !== 0) {
           return Promise.reject("Username already in use");
         }
       });
