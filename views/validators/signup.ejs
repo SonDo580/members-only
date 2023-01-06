@@ -44,13 +44,17 @@
   // Check if username is unique
   const siteURL = window.location.origin;
   username.addEventListener('change', async () => {
-    const response = await fetch(`${siteURL}/user/check-unique/${username.value}`);
-    const data = await response.json();
+    try {
+      const response = await fetch(`${siteURL}/user/check-unique/${username.value}`);
+      const data = await response.json();
 
-    if (data.userExisted) {
-      username.setCustomValidity('Username already exist');
-    } else {
-      username.setCustomValidity('')
+      if (data.userExisted) {
+        username.setCustomValidity('Username already exist');
+      } else {
+        username.setCustomValidity('')
+      }
+    } catch (err) {
+      console.log(err)
     }
   })
 </script>
