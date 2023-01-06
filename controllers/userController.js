@@ -84,6 +84,10 @@ exports.sign_up_post = [
   },
 ];
 
+exports.check_unique = (req, res) => {
+  res.send("Check username");
+};
+
 exports.log_in_get = (req, res) => {
   res.render("login_form", { title: "Log In" });
 };
