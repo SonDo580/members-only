@@ -119,6 +119,14 @@ exports.log_in_post = (req, res, next) => {
         oldPassword: req.body.password,
       });
     }
+
+    req.login(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+
+      res.redirect("/message");
+    });
   })(req, res, next);
 };
 
