@@ -67,4 +67,14 @@
       console.log(err);
     }
   })
+
+  // Check username again when submit form
+  const signupForm = document.getElementById('signupForm');
+  signupForm.addEventListener('submit', (event) => {
+    if (lastExistedUsername === username.value) {
+      event.preventDefault();
+      username.setCustomValidity('Username already exist');
+      username.reportValidity();
+    }
+  })
 </script>
