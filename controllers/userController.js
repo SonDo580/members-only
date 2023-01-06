@@ -31,7 +31,14 @@ exports.sign_up_post = [
     .escape()
     .withMessage("Username must be specified")
     .matches("^[A-Za-z0-9]+$")
-    .withMessage("Username must contain only letters and digits (no spaces)"),
+    .withMessage("Username must contain only letters and digits (no spaces)")
+    .custom((value) => {
+      return User.find({ username: value }).then((user) => {
+        if (user) {
+          return Promise.reject("Username already in use");
+        }
+      });
+    }),
   body("password")
     .isLength({ min: 1 })
     .withMessage("Password must be specified"),
