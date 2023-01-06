@@ -130,6 +130,16 @@ exports.log_in_post = (req, res, next) => {
   })(req, res, next);
 };
 
+exports.log_out = (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+
+    res.redirect("/user/login");
+  });
+};
+
 exports.become_member_get = (req, res) => {
   res.send("NOT IMPLEMENTED: Become Member GET");
 };
