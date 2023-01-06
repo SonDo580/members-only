@@ -3,6 +3,7 @@
     username.addEventListener('input', () => {
         if (username.validity.patternMismatch) {
             username.setCustomValidity("Only letters and numbers are allowed (no spaces)");
+            username.reportValidity();
         } else {
             username.setCustomValidity("");
         }
