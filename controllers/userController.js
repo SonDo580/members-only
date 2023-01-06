@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const { body, validationResult } = require("express-validator");
+const passport = require("passport");
 
 exports.sign_up_get = (req, res) => {
   res.render("signup_form", {
@@ -102,9 +103,10 @@ exports.log_in_get = (req, res) => {
   res.render("login_form", { title: "Log In" });
 };
 
-exports.log_in_post = (req, res) => {
-  res.send("NOT IMPLEMENTED: Log In POST");
-};
+exports.log_in_post = passport.authenticate("local", {
+  successRedirect: "/message",
+  failureRedirect: "/user/login",
+});
 
 exports.become_member_get = (req, res) => {
   res.send("NOT IMPLEMENTED: Become Member GET");
