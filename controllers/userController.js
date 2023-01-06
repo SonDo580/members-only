@@ -86,12 +86,12 @@ exports.sign_up_post = [
 ];
 
 exports.check_unique = (req, res) => {
-  User.find({ username: req.params.username }).exec((err, users) => {
+  User.findOne({ username: req.params.username }).exec((err, user) => {
     if (err) {
       return next(err);
     }
 
-    if (users.length === 0) {
+    if (user === null) {
       res.send({ userExisted: false });
     } else {
       res.send({ userExisted: true });
