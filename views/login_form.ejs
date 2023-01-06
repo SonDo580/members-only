@@ -11,13 +11,17 @@
         <hr>
         <div class="row mb-3">
             <label>Username*</label>
-            <input type="text" class="form-control" required maxlength="100" pattern="^[A-Za-z0-9]+$" name="username">
+            <input type="text" class="form-control" required maxlength="100" pattern="^[A-Za-z0-9]+$" name="username"
+                value="<%= oldUsername === undefined ? '' : oldUsername %>">
         </div>
         <div class="row mb-3">
             <label>Password*</label>
-            <input type="password" class="form-control" required name="password">
+            <input type="password" class="form-control" required name="password"
+                value="<%= oldPassword === undefined ? '' : oldPassword %>">
         </div>
-        <p class="text-danger"><%= message %></p>
+
+        <p class="text-danger"><%= message === undefined ? '' : message %></p>
+
         <div class="row">
             <button class="btn btn-primary">Log In</button>
         </div>
