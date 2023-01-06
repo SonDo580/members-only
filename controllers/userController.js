@@ -85,7 +85,16 @@ exports.sign_up_post = [
 ];
 
 exports.check_unique = (req, res) => {
-  res.send("Check username");
+  User.find({ username: req.params.username }).exec((err, users) => {
+    if (err) {
+      return next(err);
+    }
+
+    if (users.length === 0) {
+      res.send({ userExisted: false });
+    }
+    res.send({ userExisted: true });
+  });
 };
 
 exports.log_in_get = (req, res) => {
