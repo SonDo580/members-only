@@ -25,6 +25,27 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+// Set up Local Strategy
+passport.use(
+  new LocalStrategy((username, password, done) => {
+    User.findOne({ username: username }, (err, user) => {
+      if (err) {
+        return done(err);
+      }
+
+      if (!user) {
+        return done(null, false, { message: "Incorrect username" });
+      }
+
+      if (user.password !== password) {
+        return done(null, false, { message: "Incorrect password" });
+      }
+
+      return done(null, user);
+    });
+  })
+);
+
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
