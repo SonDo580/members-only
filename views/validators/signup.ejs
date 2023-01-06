@@ -11,16 +11,6 @@
     }
   });
 
-  // Validate username
-  const username = document.getElementById("username");
-  username.addEventListener('input', () => {
-    if (username.validity.patternMismatch) {
-      username.setCustomValidity("Only letters and numbers are allowed (no spaces)");
-    } else {
-      username.setCustomValidity("");
-    }
-  })
-
   // Validate firstName
   const firstName = document.getElementById("firstName");
   firstName.addEventListener('input', () => {
@@ -38,6 +28,29 @@
       lastName.setCustomValidity("Only letters are allowed (no spaces)");
     } else {
       lastName.setCustomValidity("");
+    }
+  })
+
+  // Validate username
+  const username = document.getElementById("username");
+  username.addEventListener('input', () => {
+    if (username.validity.patternMismatch) {
+      username.setCustomValidity("Only letters and numbers are allowed (no spaces)");
+    } else {
+      username.setCustomValidity("");
+    }
+  })
+
+  // Check if username is unique
+  const siteURL = window.location.origin;
+  username.addEventListener('change', async () => {
+    const response = await fetch(`${siteURL}/user/check-unique/${username.value}`);
+    const data = await response.json();
+
+    if (data.userExisted) {
+      username.setCustomValidity('Username already exist');
+    } else {
+      username.setCustomValidity('')
     }
   })
 </script>
