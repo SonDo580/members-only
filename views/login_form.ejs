@@ -12,15 +12,15 @@
         <div class="row mb-3">
             <label>Username*</label>
             <input type="text" class="form-control" required maxlength="100" pattern="^[A-Za-z0-9]+$" name="username"
-                value="<%= oldUsername === undefined ? '' : oldUsername %>">
+                value="<%= oldUsername === null ? '' : oldUsername %>">
         </div>
         <div class="row mb-3">
             <label>Password*</label>
             <input type="password" class="form-control" required name="password"
-                value="<%= oldPassword === undefined ? '' : oldPassword %>">
+                value="<%= oldPassword === null ? '' : oldPassword %>">
         </div>
 
-        <p class="text-danger"><%= message === undefined ? '' : message %></p>
+        <p class="text-danger"><%= message === null ? '' : message %></p>
 
         <div class="row">
             <button class="btn btn-primary">Log In</button>
