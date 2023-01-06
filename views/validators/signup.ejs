@@ -50,6 +50,9 @@
   let lastExistedUsername = '';
   username.addEventListener('change', async () => {
     try {
+      if (username.value === '') {
+        return;
+      }
       const response = await fetch(`${siteURL}/user/check-unique/${username.value}`);
       const data = await response.json();
 
