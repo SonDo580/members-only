@@ -103,10 +103,22 @@ exports.log_in_get = (req, res) => {
   res.render("login_form", { title: "Log In" });
 };
 
-exports.log_in_post = passport.authenticate("local", {
-  successRedirect: "/message",
-  failureRedirect: "/user/login",
-});
+exports.log_in_post = (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+
+    if (!user) {
+      return res.render("login_form", {
+        title: "Log In",
+        message: info.message,
+        oldUsername: req.body.username,
+        oldPassword: req.body.password,
+      });
+    }
+  });
+};
 
 exports.become_member_get = (req, res) => {
   res.send("NOT IMPLEMENTED: Become Member GET");
