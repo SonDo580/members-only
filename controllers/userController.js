@@ -100,7 +100,9 @@ exports.check_unique = (req, res) => {
 };
 
 exports.log_in_get = (req, res) => {
-  res.render("login_form", { title: "Log In" });
+  res.render("login_form", {
+    title: "Log In",
+  });
 };
 
 exports.log_in_post = (req, res, next) => {
@@ -117,7 +119,7 @@ exports.log_in_post = (req, res, next) => {
         oldPassword: req.body.password,
       });
     }
-  });
+  })(req, res, next);
 };
 
 exports.become_member_get = (req, res) => {
