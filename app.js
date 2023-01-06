@@ -12,6 +12,8 @@ const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
 const messageRouter = require("./routes/message");
 
+const User = require("./models/user");
+
 const app = express();
 
 // Set up mongoose connection
@@ -25,7 +27,6 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-// Set up Local Strategy
 passport.use(
   new LocalStrategy((username, password, done) => {
     User.findOne({ username: username }, (err, user) => {
@@ -45,6 +46,16 @@ passport.use(
     });
   })
 );
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  User.findById(id, (err, user) => {
+    done(err, user);
+  });
+});
 
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
