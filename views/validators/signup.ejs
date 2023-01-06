@@ -6,6 +6,7 @@
   confirmPassword.addEventListener("input", () => {
     if (password.value !== confirmPassword.value) {
       confirmPassword.setCustomValidity("Passwords don't match");
+      confirmPassword.reportValidity();
     } else {
       confirmPassword.setCustomValidity("");
     }
@@ -16,6 +17,7 @@
   firstName.addEventListener('input', () => {
     if (firstName.validity.patternMismatch) {
       firstName.setCustomValidity("Only letters are allowed (no spaces)");
+      firstName.reportValidity();
     } else {
       firstName.setCustomValidity("");
     }
@@ -26,6 +28,7 @@
   lastName.addEventListener('input', () => {
     if (lastName.validity.patternMismatch) {
       lastName.setCustomValidity("Only letters are allowed (no spaces)");
+      lastName.reportValidity();
     } else {
       lastName.setCustomValidity("");
     }
@@ -36,6 +39,7 @@
   username.addEventListener('input', () => {
     if (username.validity.patternMismatch) {
       username.setCustomValidity("Only letters and numbers are allowed (no spaces)");
+      username.reportValidity();
     } else {
       username.setCustomValidity("");
     }
@@ -50,11 +54,12 @@
 
       if (data.userExisted) {
         username.setCustomValidity('Username already exist');
+        username.reportValidity();
       } else {
-        username.setCustomValidity('')
+        username.setCustomValidity('');
       }
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   })
 </script>
