@@ -102,6 +102,9 @@ exports.check_unique = (req, res) => {
 exports.log_in_get = (req, res) => {
   res.render("login_form", {
     title: "Log In",
+    message: null,
+    oldUsername: null,
+    oldPassword: null,
   });
 };
 
