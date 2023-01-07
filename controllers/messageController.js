@@ -36,6 +36,12 @@ exports.message_create_get = (req, res) => {
 };
 
 exports.message_create_post = [
+  (req, res) => {
+    if (!req.user) {
+      res.redirect("/user/login");
+    }
+  },
+
   // Validate and sanitize input
   body("title")
     .trim()
