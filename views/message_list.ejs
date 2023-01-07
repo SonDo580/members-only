@@ -10,6 +10,27 @@
 
     <h1 class="text-center"><%= title %></h1>
     <hr>
+
+    <% if (messages.length === 0) { %>
+    <h1>No Messages Found</h1>
+
+    <% } else { %>
+    <div class="px-5">
+        <% for (const message of messages) { %>
+        <div class="card mb-3">
+            <h5 class="card-header">
+                By <span><%= message.author.username %></span>
+                <span class="text-primary"><%= message.updatedAt %></span>
+            </h5>
+            <div class="card-body">
+                <h5 class="card-title"><%= message.title %></h5>
+                <p class="card-text"><%= message.content %></p>
+                <button class="btn btn-danger">Delete Message</button>
+            </div>
+        </div>
+        <% } %>
+    </div>
+    <% } %>
 </body>
 
 </html>
