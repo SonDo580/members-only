@@ -150,6 +150,10 @@ exports.log_out = (req, res, next) => {
 };
 
 exports.become_member_get = (req, res) => {
+  if (!req.user) {
+    return res.redirect("/user/login");
+  }
+
   res.send("NOT IMPLEMENTED: Become Member GET");
 };
 
