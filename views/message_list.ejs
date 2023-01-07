@@ -20,7 +20,9 @@
         <div class="card mb-3">
             <h5 class="card-header">
                 By <span><%= message.author.username %></span>
-                <span class="text-primary"><%= message.updatedAt %></span>
+                <span class="text-primary">
+                    <%= DateTime.fromJSDate(message.updatedAt).toLocaleString(DateTime.DATE_MED); %>
+                </span>
             </h5>
             <div class="card-body">
                 <h5 class="card-title"><%= message.title %></h5>
