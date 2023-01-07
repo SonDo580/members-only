@@ -21,7 +21,7 @@ exports.message_create_post = [
     .isLength({ min: 1 })
     .escape()
     .withMessage("Title must be specified"),
-  body("lastName")
+  body("content")
     .trim()
     .isLength({ min: 1 })
     .escape()
