@@ -128,7 +128,7 @@ exports.log_in_post = (req, res, next) => {
         return next(err);
       }
 
-      res.redirect("/message");
+      res.redirect("/");
     });
   })(req, res, next);
 };

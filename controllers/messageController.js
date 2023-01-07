@@ -40,8 +40,6 @@ exports.message_create_post = [
       });
     }
 
-    // Data is valid
-
     const message = new Message({
       title: req.body.title,
       content: req.body.content,
