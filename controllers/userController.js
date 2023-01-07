@@ -18,14 +18,18 @@ exports.sign_up_post = [
     .escape()
     .withMessage("First name must be specified")
     .matches("^[A-Za-z]+$")
-    .withMessage("First name must contain only letters (no spaces)"),
+    .withMessage("First name must contain only letters (no spaces)")
+    .isLength({ max: 100 })
+    .withMessage("First name must contain at most 100 characters"),
   body("lastName")
     .trim()
     .isLength({ min: 1 })
     .escape()
     .withMessage("Last name must be specified")
     .matches("^[A-Za-z]+$")
-    .withMessage("Last name must contain only letters (no spaces)"),
+    .withMessage("Last name must contain only letters (no spaces)")
+    .isLength({ max: 100 })
+    .withMessage("Last name must contain at most 100 characters"),
   body("username")
     .trim()
     .isLength({ min: 1 })
@@ -33,6 +37,8 @@ exports.sign_up_post = [
     .withMessage("Username must be specified")
     .matches("^[A-Za-z0-9]+$")
     .withMessage("Username must contain only letters and digits (no spaces)")
+    .isLength({ max: 100 })
+    .withMessage("Username must contain at most 100 characters")
     .custom((value) => {
       return User.findOne({ username: value }).then((user) => {
         if (users.length !== null) {
