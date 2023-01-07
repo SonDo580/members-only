@@ -13,11 +13,13 @@
         <hr>
         <div class="row mb-3">
             <label>Title*</label>
-            <input type="text" class="form-control" required maxlength="300" name="title">
+            <input type="text" class="form-control" required maxlength="300" name="title"
+                value="<%= oldData === null ? '' : oldData.title %>">
         </div>
         <div class="row mb-3">
             <label>Content*</label>
-            <textarea class="form-control" required style="resize: none; height: 200px;" name="content"></textarea>
+            <textarea class="form-control" required style="resize: none; height: 200px;"
+                name="content"><%= oldData === null ? '' : oldData.content %></textarea>
         </div>
 
         <div class="row">
