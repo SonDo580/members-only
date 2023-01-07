@@ -5,7 +5,7 @@ const passport = require("passport");
 exports.sign_up_get = (req, res) => {
   res.render("signup_form", {
     title: "Sign Up",
-    user: null,
+    oldData: null,
     errors: null,
   });
 };
@@ -57,7 +57,7 @@ exports.sign_up_post = [
     if (!errors.isEmpty()) {
       res.render("signup_form", {
         title: "Sign Up",
-        user: req.body,
+        oldData: req.body,
         errors: errors.array(),
       });
       return;
