@@ -1,6 +1,7 @@
 const Message = require("../models/message");
 
 const { body, validationResult } = require("express-validator");
+const { DateTime } = require("luxon");
 
 exports.message_list = (req, res, next) => {
   Message.find()
@@ -13,6 +14,7 @@ exports.message_list = (req, res, next) => {
       res.render("message_list", {
         title: "All Messages",
         messages: messages,
+        DateTime: DateTime,
       });
     });
 };
