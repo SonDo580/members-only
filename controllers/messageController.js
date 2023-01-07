@@ -4,6 +4,10 @@ const { body, validationResult } = require("express-validator");
 const { DateTime } = require("luxon");
 
 exports.message_list = (req, res, next) => {
+  if (!req.user) {
+    return res.redirect("/user/login");
+  }
+
   Message.find()
     .populate("author")
     .exec((err, messages) => {
@@ -20,6 +24,10 @@ exports.message_list = (req, res, next) => {
 };
 
 exports.message_create_get = (req, res) => {
+  if (!req.user) {
+    return res.redirect("/user/login");
+  }
+
   res.render("message_form", {
     title: "Create Message",
     oldData: null,
