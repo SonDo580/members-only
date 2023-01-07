@@ -154,7 +154,9 @@ exports.become_member_get = (req, res) => {
     return res.redirect("/user/login");
   }
 
-  res.send("NOT IMPLEMENTED: Become Member GET");
+  res.render("member_form", {
+    title: "Become Member",
+  });
 };
 
 exports.become_member_post = (req, res) => {
