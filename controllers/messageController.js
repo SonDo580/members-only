@@ -3,7 +3,16 @@ const Message = require("../models/message");
 const { body, validationResult } = require("express-validator");
 
 exports.message_list = (req, res, next) => {
-  res.send("NOT IMPLEMENTED: Home Page");
+  Message.find().exec((err, messages) => {
+    if (err) {
+      return next(err);
+    }
+
+    res.render("message_list", {
+      title: "All Messages",
+      messages: messages,
+    });
+  });
 };
 
 exports.message_create_get = (req, res) => {
@@ -23,6 +32,7 @@ exports.message_create_post = [
     .withMessage("Title must be specified")
     .isLength({ max: 300 })
     .withMessage("Title must contain at most 300 characters"),
+
   body("content")
     .trim()
     .isLength({ min: 1 })
