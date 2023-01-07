@@ -20,7 +20,9 @@ exports.message_create_post = [
     .trim()
     .isLength({ min: 1 })
     .escape()
-    .withMessage("Title must be specified"),
+    .withMessage("Title must be specified")
+    .isLength({ max: 300 })
+    .withMessage("Title must contain at most 300 characters"),
   body("content")
     .trim()
     .isLength({ min: 1 })
