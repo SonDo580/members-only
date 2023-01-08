@@ -3,6 +3,10 @@ const { body, validationResult } = require("express-validator");
 const passport = require("passport");
 
 exports.sign_up_get = (req, res) => {
+  if (req.user) {
+    return res.redirect("back");
+  }
+
   res.render("signup_form", {
     title: "Sign Up",
     oldData: null,
@@ -11,6 +15,12 @@ exports.sign_up_get = (req, res) => {
 };
 
 exports.sign_up_post = [
+  (req, res) => {
+    if (req.user) {
+      return res.redirect("back");
+    }
+  },
+
   // Validate user input
   body("firstName")
     .trim()
@@ -106,6 +116,10 @@ exports.check_unique = (req, res) => {
 };
 
 exports.log_in_get = (req, res) => {
+  if (req.user) {
+    return res.redirect("back");
+  }
+
   res.render("login_form", {
     title: "Log In",
     message: null,
@@ -115,6 +129,10 @@ exports.log_in_get = (req, res) => {
 };
 
 exports.log_in_post = (req, res, next) => {
+  if (req.user) {
+    return res.redirect("back");
+  }
+
   passport.authenticate("local", (err, user, info) => {
     if (err) {
       return next(err);
