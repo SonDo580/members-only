@@ -189,4 +189,17 @@ exports.become_member_post = (req, res) => {
       message: "Wrong answer!",
     });
   }
+
+  User.findByIdAndUpdate(
+    req.user._id,
+    { isMember: true },
+    {},
+    (err, updatedUser) => {
+      if (err) {
+        return next(err);
+      }
+
+      res.redirect("/user/become-member");
+    }
+  );
 };
