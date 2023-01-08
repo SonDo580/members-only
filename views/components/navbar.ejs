@@ -31,3 +31,15 @@
         <% } %>
     </div>
 </nav>
+
+<script>
+    const navbarLinks = document.getElementById('navbarLinks').getElementsByTagName('a');
+    for (const link of navbarLinks) {
+        const url = window.location.origin + link.getAttribute('href');
+        if (window.location.href === url) {
+            link.classList.add('text-warning');
+        } else {
+            link.classList.remove('text-warning');
+        }
+    }
+</script>
