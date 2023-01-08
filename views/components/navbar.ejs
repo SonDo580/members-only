@@ -6,6 +6,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
+        <% if (currentUser) { %>
         <div class="collapse navbar-collapse" id="navbarLinks">
             <div class="navbar-nav">
                 <a class="nav-link" href="/message">
@@ -27,5 +28,6 @@
                 Log Out
             </a>
         </div>
+        <% } %>
     </div>
 </nav>
