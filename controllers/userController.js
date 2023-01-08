@@ -174,9 +174,19 @@ exports.become_member_get = (req, res) => {
 
   res.render("member_form", {
     title: "Become Member",
+    message: "",
   });
 };
 
 exports.become_member_post = (req, res) => {
-  res.send("NOT IMPLEMENTED: Become Member POST");
+  if (!req.user) {
+    return res.redirect("/user/login");
+  }
+
+  if (req.body.memberCode !== process.env.MEMBER_CODE) {
+    return res.render("member_form", {
+      title: "Become Member",
+      message: "Wrong answer!",
+    });
+  }
 };
