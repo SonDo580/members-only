@@ -9,6 +9,7 @@ exports.message_list = (req, res, next) => {
   }
 
   Message.find()
+    .sort("-updatedAt")
     .populate("author")
     .exec((err, messages) => {
       if (err) {
