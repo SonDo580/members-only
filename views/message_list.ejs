@@ -19,7 +19,9 @@
         <% for (const message of messages) { %>
         <div class="card mb-3">
             <h5 class="card-header">
-                By <span><%= message.author.username %></span>
+                <% if (currentUser.isMember) { %>
+                <span>By <%= message.author.username %></span>
+                <% } %>
                 <span class="text-primary">
                     <%= DateTime.fromJSDate(message.updatedAt).toLocaleString(DateTime.DATE_MED); %>
                 </span>
