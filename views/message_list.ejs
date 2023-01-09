@@ -43,8 +43,7 @@
         function deleteMessage(id) {
             const url = `${window.location.href}/${id}`;
             fetch(url, { method: 'DELETE' })
-                .then(response => response.json())
-                .then(data => alert(data.message))
+                .then(response => { })
                 .catch(err => {
                     alert(err);
                 })
