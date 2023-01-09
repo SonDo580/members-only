@@ -30,10 +30,10 @@
                 <h5 class="card-title"><%= message.title %></h5>
                 <p class="card-text"><%= message.content %></p>
 
-                <%# if(currentUser.isAdmin) { %>
+                <% if(currentUser.isAdmin) { %>
                 <button class="btn btn-danger" onclick="deleteMessage('<%= message._id %>')">Delete
                     Message</button>
-                <%# } %>
+                <% } %>
             </div>
         </div>
         <% } %>
