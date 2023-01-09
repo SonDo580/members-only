@@ -16,10 +16,11 @@ exports.sign_up_get = (req, res) => {
 };
 
 exports.sign_up_post = [
-  (req, res) => {
+  (req, res, next) => {
     if (req.user) {
       return res.redirect("back");
     }
+    next();
   },
 
   // Validate user input
@@ -49,14 +50,14 @@ exports.sign_up_post = [
     .matches("^[A-Za-z0-9]+$")
     .withMessage("Username must contain only letters and digits (no spaces)")
     .isLength({ max: 100 })
-    .withMessage("Username must contain at most 100 characters")
-    .custom((value) => {
-      return User.findOne({ username: value }).then((user) => {
-        if (user !== null) {
-          return Promise.reject("Username already in use");
-        }
-      });
-    }),
+    .withMessage("Username must contain at most 100 characters"),
+  // .custom((value) => {
+  //   return User.findOne({ username: value }).then((user) => {
+  //     if (user !== null) {
+  //       return Promise.reject("Username already in use");
+  //     }
+  //   });
+  // }),
   body("password")
     .isLength({ min: 1 })
     .withMessage("Password must be specified"),
@@ -86,13 +87,11 @@ exports.sign_up_post = [
     //     return next(err);
     //   }
 
-    const hashedPassword = "test";
-
     const user = new User({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       username: req.body.username,
-      password: hashedPassword,
+      password: req.body.password,
     });
 
     if (req.body.adminPass === process.env.ADMIN_PASS) {
