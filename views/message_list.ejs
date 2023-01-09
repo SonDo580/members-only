@@ -41,7 +41,7 @@
     <% } %>
 
     <script>
-        function deleteMessage(isAdmin, id) {
+        function deleteMessage(id) {
             const url = `${window.location.href}/${id}`;
             fetch(url, { method: 'DELETE' })
                 .then(response => { })
