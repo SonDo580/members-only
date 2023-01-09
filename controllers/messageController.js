@@ -88,7 +88,7 @@ exports.message_create_post = [
   },
 ];
 
-exports.message_delete = (req, res) => {
+exports.message_delete = (req, res, next) => {
   if (!req.user.isAdmin) {
     return;
   }
