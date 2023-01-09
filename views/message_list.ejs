@@ -31,7 +31,8 @@
                 <p class="card-text"><%= message.content %></p>
 
                 <%# if(currentUser.isAdmin) { %>
-                <button class="btn btn-danger" onclick="deleteMessage('<%= message._id %>')">Delete Message</button>
+                <button class="btn btn-danger" onclick="deleteMessage('<%= message._id %>')">Delete
+                    Message</button>
                 <%# } %>
             </div>
         </div>
@@ -40,7 +41,7 @@
     <% } %>
 
     <script>
-        function deleteMessage(id) {
+        function deleteMessage(isAdmin, id) {
             const url = `${window.location.href}/${id}`;
             fetch(url, { method: 'DELETE' })
                 .then(response => { })
