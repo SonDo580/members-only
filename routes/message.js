@@ -10,6 +10,6 @@ router
   .get(messageController.message_create_get)
   .post(messageController.message_create_post);
 
-router.delete("/:id", messageController.message_delete);
+router.delete("/delete/:id", messageController.message_delete);
 
 module.exports = router;
