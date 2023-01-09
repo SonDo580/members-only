@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const { body, validationResult } = require("express-validator");
 const passport = require("passport");
+const bcrypt = require("bcryptjs");
 
 exports.sign_up_get = (req, res) => {
   if (req.user) {
@@ -65,7 +66,6 @@ exports.sign_up_post = [
     .custom((value, { req }) => value === req.body.password)
     .withMessage("Password confirmation does not match password"),
 
-  // Process request
   (req, res, next) => {
     const errors = validationResult(req);
 
@@ -78,24 +78,30 @@ exports.sign_up_post = [
       });
     }
 
-    // Data is valid
-    const user = new User({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      username: req.body.username,
-      password: req.body.password, // save as plain text for now
-    });
-
-    if (req.body.adminPass === process.env.ADMIN_PASS) {
-      user.isAdmin = true;
-    }
-
-    user.save((err) => {
+    // Data is valid => Hash the password and save user
+    bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
       if (err) {
         return next(err);
       }
 
-      res.redirect("/user/login");
+      const user = new User({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        username: req.body.username,
+        password: hashedPassword,
+      });
+
+      if (req.body.adminPass === process.env.ADMIN_PASS) {
+        user.isAdmin = true;
+      }
+
+      user.save((err) => {
+        if (err) {
+          return next(err);
+        }
+
+        res.redirect("/user/login");
+      });
     });
   },
 ];
