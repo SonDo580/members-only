@@ -29,7 +29,10 @@
             <div class="card-body">
                 <h5 class="card-title"><%= message.title %></h5>
                 <p class="card-text"><%= message.content %></p>
+
+                <% if(currentUser.isAdmin) { %>
                 <button class="btn btn-danger">Delete Message</button>
+                <% } %>
             </div>
         </div>
         <% } %>
