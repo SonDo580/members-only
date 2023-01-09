@@ -89,6 +89,14 @@ exports.message_create_post = [
 
 exports.message_delete = (req, res) => {
   if (!req.user.isAdmin) {
-    return res.send({ message: "Permission denied!" });
+    return;
   }
+
+  Message.findByIdAndRemove(req.params.id, (err) => {
+    if (err) {
+      return next(err);
+    }
+
+    res.redirect("/message");
+  });
 };
