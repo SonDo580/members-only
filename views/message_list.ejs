@@ -30,14 +30,26 @@
                 <h5 class="card-title"><%= message.title %></h5>
                 <p class="card-text"><%= message.content %></p>
 
-                <% if(currentUser.isAdmin) { %>
-                <button class="btn btn-danger">Delete Message</button>
-                <% } %>
+                <%# if(currentUser.isAdmin) { %>
+                <button class="btn btn-danger" onclick="deleteMessage('<%= message._id %>')">Delete Message</button>
+                <%# } %>
             </div>
         </div>
         <% } %>
     </div>
     <% } %>
+
+    <script>
+        function deleteMessage(id) {
+            const url = `${window.location.href}/${id}`;
+            fetch(url, { method: 'DELETE' })
+                .then(response => response.json())
+                .then(data => alert(data.message))
+                .catch(err => {
+                    alert(err);
+                })
+        }
+    </script>
 </body>
 
 </html>
