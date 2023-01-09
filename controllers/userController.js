@@ -94,6 +94,7 @@ exports.sign_up_post = [
 
       if (req.body.adminPass === process.env.ADMIN_PASS) {
         user.isAdmin = true;
+        user.isMember = true;
       }
 
       user.save((err) => {
