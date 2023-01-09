@@ -37,7 +37,7 @@ exports.message_create_get = (req, res) => {
 };
 
 exports.message_create_post = [
-  (req, res) => {
+  (req, res, next) => {
     if (!req.user) {
       return res.redirect("/user/login");
     }
