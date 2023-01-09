@@ -6,6 +6,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const bcrypt = require("bcryptjs");
 require("dotenv").config();
 
 const indexRouter = require("./routes/index");
@@ -44,11 +45,13 @@ passport.use(
         return done(null, false, { message: "Incorrect username" });
       }
 
-      if (user.password !== password) {
-        return done(null, false, { message: "Incorrect password" });
-      }
-
-      return done(null, user);
+      bcrypt.compare(password, user.password, (err, res) => {
+        if (res) {
+          return done(null, user);
+        } else {
+          return done(null, false, { message: "Incorrect password" });
+        }
+      });
     });
   })
 );
