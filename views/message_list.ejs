@@ -44,7 +44,12 @@
         function deleteMessage(id) {
             const url = `${window.location.origin}/message/delete/${id}`;
             fetch(url, { method: 'DELETE' })
-                .then(response => { })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.deleted) {
+                        window.location.reload();
+                    }
+                })
                 .catch(err => {
                     alert(err);
                 })
