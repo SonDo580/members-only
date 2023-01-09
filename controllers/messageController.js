@@ -88,5 +88,7 @@ exports.message_create_post = [
 ];
 
 exports.message_delete = (req, res) => {
-  res.send("NOT IMPLEMENTED: Delete Message");
+  if (!req.user.isAdmin) {
+    return res.send({ message: "Permission denied!" });
+  }
 };
