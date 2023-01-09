@@ -90,7 +90,7 @@ exports.message_create_post = [
 
 exports.message_delete = (req, res, next) => {
   if (!req.user.isAdmin) {
-    return;
+    return res.send({ deleted: false });
   }
 
   Message.findByIdAndRemove(req.params.id, (err) => {
@@ -98,6 +98,6 @@ exports.message_delete = (req, res, next) => {
       return next(err);
     }
 
-    res.redirect("/message");
+    res.send({ deleted: true });
   });
 };
