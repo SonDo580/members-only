@@ -71,12 +71,11 @@ exports.sign_up_post = [
 
     // Render the form again if there are errors
     if (!errors.isEmpty()) {
-      res.render("signup_form", {
+      return res.render("signup_form", {
         title: "Sign Up",
         oldData: req.body,
         errors: errors.array(),
       });
-      return;
     }
 
     // Data is valid
