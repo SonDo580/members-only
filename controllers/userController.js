@@ -50,14 +50,14 @@ exports.sign_up_post = [
     .matches("^[A-Za-z0-9]+$")
     .withMessage("Username must contain only letters and digits (no spaces)")
     .isLength({ max: 100 })
-    .withMessage("Username must contain at most 100 characters"),
-  // .custom((value) => {
-  //   return User.findOne({ username: value }).then((user) => {
-  //     if (user !== null) {
-  //       return Promise.reject("Username already in use");
-  //     }
-  //   });
-  // }),
+    .withMessage("Username must contain at most 100 characters")
+    .custom((value) => {
+      return User.findOne({ username: value }).then((user) => {
+        if (user !== null) {
+          return Promise.reject("Username already in use");
+        }
+      });
+    }),
   body("password")
     .isLength({ min: 1 })
     .withMessage("Password must be specified"),
@@ -80,32 +80,30 @@ exports.sign_up_post = [
     }
 
     // Data is valid => Hash the password and save user
-    // bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
-    //   console.log(hashedPassword);
-
-    //   if (err) {
-    //     return next(err);
-    //   }
-
-    const user = new User({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      username: req.body.username,
-      password: req.body.password,
-    });
-
-    if (req.body.adminPass === process.env.ADMIN_PASS) {
-      user.isAdmin = true;
-    }
-
-    user.save((err) => {
+    bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
       if (err) {
         return next(err);
       }
 
-      res.redirect("/user/login");
+      const user = new User({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        username: req.body.username,
+        password: hashedPassword,
+      });
+
+      if (req.body.adminPass === process.env.ADMIN_PASS) {
+        user.isAdmin = true;
+      }
+
+      user.save((err) => {
+        if (err) {
+          return next(err);
+        }
+
+        res.redirect("/user/login");
+      });
     });
-    // });
   },
 ];
 
