@@ -59,11 +59,11 @@ exports.sign_up_post = [
       });
     }),
   body("password")
-    .isLength({ min: 1 })
-    .withMessage("Password must be specified"),
+    .isLength({ min: 8 })
+    .withMessage("Password must contain at least 8 characters"),
   body("confirmPassword")
-    .isLength({ min: 1 })
-    .withMessage("Password confirmation must be specified")
+    .isLength({ min: 8 })
+    .withMessage("Password confirmation must contain at least 8 characters")
     .custom((value, { req }) => value === req.body.password)
     .withMessage("Password confirmation does not match password"),
 
