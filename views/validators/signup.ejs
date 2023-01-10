@@ -1,8 +1,17 @@
 <script>
-  // Confirm password
+  // Validate password
   const password = document.getElementById("password");
-  const confirmPassword = document.getElementById("confirmPassword");
+  password.addEventListener("input", () => {
+    if (password.validity.tooShort) {
+      password.setCustomValidity("Password must contain at least 8 characters");
+      password.reportValidity();
+    } else {
+      password.setCustomValidity("");
+    }
+  });
 
+  // Confirm password
+  const confirmPassword = document.getElementById("confirmPassword");
   confirmPassword.addEventListener("input", () => {
     if (password.value !== confirmPassword.value) {
       confirmPassword.setCustomValidity("Passwords don't match");
