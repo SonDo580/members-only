@@ -15,8 +15,10 @@ const app = express();
 
 // Set up mongoose connection
 const mongoose = require("mongoose");
-const mongoDB = process.env.MONGODB_URI;
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
@@ -30,6 +32,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+// Passport setup
 const configPassport = require("./config/passportConfig");
 configPassport();
 
@@ -43,11 +46,13 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Add current user to locals
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   next();
 });
 
+// Route setup
 app.use("/", indexRouter);
 app.use("/user", userRouter);
 app.use("/message", messageRouter);
