@@ -10,6 +10,7 @@
 # Features
 
 - Register, Login, Logout
+- Server-side + Client-side validation
 - View all messages (newest to oldest)
 - Create new message
 - Become a member
